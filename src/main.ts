@@ -115,7 +115,7 @@ function downloadImage() {
   htmlToCanvas(render).then(function (canvas) {
     const link = document.createElement('a');
     link.download = 'next-stage-badge.jpg';
-    link.href = canvas.toDataURL('image/png');
+    link.href = canvas.toDataURL('image/jpeg');
     link.click();
 
     render.remove();
