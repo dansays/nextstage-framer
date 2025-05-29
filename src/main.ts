@@ -22,11 +22,11 @@ const template = `
 		  <p>Adjust the slider below to zoom; drag-and-drop to adjust position.</p>
 		  <input class="ns-scale" type="range" min="100" max="200" step="1" value="100" />
     </fieldset>
-		<button id="ns-download" type="button">Download Badge</button>
+		<button id="ns-download" type="button">Download Image</button>
 	</form>
 
   <div class="ns-success" hidden>
-    <b>Your badge has been generated!</b> Please check your downloads folder.
+    <b>Your image has been generated!</b> Please check your downloads folder.
   </div>
 `;
 
@@ -114,7 +114,7 @@ function downloadImage() {
 
   htmlToCanvas(render).then(function (canvas) {
     const link = document.createElement('a');
-    link.download = 'next-stage-badge.jpg';
+    link.download = 'next-stage-image.jpg';
     link.href = canvas.toDataURL('image/jpeg');
     link.click();
 
