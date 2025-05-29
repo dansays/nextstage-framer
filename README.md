@@ -17,3 +17,7 @@ Add `<link rel="framer-placeholder" href="..." />`. Set the `href` property to t
 ### Add Container
 
 Add `<div id="ns-framer"></div>` to your `<body>`. The framer will be rendered within this container. The UI will expand to fit the width of this container; add `#ns-framer { max-width: 800px; }` to your stylesheet if your content well is wide.
+
+## Known Issues
+
+- Drag-and-drop panning will likely not work on touch devices
