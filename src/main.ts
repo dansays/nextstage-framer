@@ -112,7 +112,9 @@ function downloadImage() {
     link.href = data;
     link.click();
     render.remove();
-    location.href = getAsset('framer-redirect-url')!;
+
+    alert('Your badge has downloaded! Please check your downloads folder.');
+    window.top?.location.reload();
   });
 }
 
