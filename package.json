@@ -13,9 +13,6 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
-    "@types/croppie": "^2.6.4",
-    "croppie": "^2.6.5",
-    "dom-to-image-more": "^3.6.0",
-    "html-to-image": "^1.11.13"
+    "dom-to-image-more": "^3.6.0"
   }
 }
