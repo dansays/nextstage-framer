@@ -1,5 +1,5 @@
 import './style.css';
-import { toPng } from 'dom-to-image-more';
+import htmlToCanvas from 'html2canvas';
 
 //
 // Interface Template
@@ -106,14 +106,16 @@ function downloadImage() {
   img.style.top = `${img.dataset.top}`;
   app.appendChild(render);
 
-  toPng(render).then(function (data) {
+  htmlToCanvas(render).then(function (canvas) {
     const link = document.createElement('a');
-    link.download = 'next-stage-badge.png';
-    link.href = data;
+    link.download = 'next-stage-badge.jpg';
+    link.href = canvas.toDataURL('image/png');
     link.click();
     render.remove();
 
-    alert('Your badge has downloaded! Please check your downloads folder.');
+    setTimeout(() => {
+      alert('Your badge has downloaded! Please check your downloads folder.');
+    }, 100);
   });
 }
 
