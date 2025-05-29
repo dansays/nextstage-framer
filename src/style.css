@@ -81,6 +81,14 @@
     margin-bottom: 1.5rem;
   }
 
+  .ns-success {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    background-color: #f5f5f5;
+  }
+
   p {
     margin-top: 0;
     margin-bottom: 0.5rem;

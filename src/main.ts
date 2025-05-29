@@ -24,6 +24,10 @@ const template = `
     </fieldset>
 		<button id="ns-download" type="button">Download Badge</button>
 	</form>
+
+  <div class="ns-success" hidden>
+    <b>Your badge has been generated!</b> Please check your downloads folder.
+  </div>
 `;
 
 //
@@ -38,6 +42,7 @@ let placeholder: HTMLImageElement;
 let downloadForm: HTMLFormElement;
 let scaleSlider: HTMLInputElement;
 let uploadButton: HTMLInputElement;
+let successMessage: HTMLDivElement;
 let downloadButton: HTMLButtonElement;
 
 //
@@ -57,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
   scaleSlider = app.querySelector('.ns-scale')!;
   uploadButton = app.querySelector('#ns-upload')!;
   uploadForm = app.querySelector('form.ns-upload')!;
+  successMessage = app.querySelector('.ns-success')!;
   placeholder = app.querySelector('.ns-placeholder')!;
   downloadButton = app.querySelector('#ns-download')!;
   downloadForm = app.querySelector('form.ns-download')!;
@@ -111,11 +117,10 @@ function downloadImage() {
     link.download = 'next-stage-badge.jpg';
     link.href = canvas.toDataURL('image/png');
     link.click();
-    render.remove();
 
-    setTimeout(() => {
-      alert('Your badge has downloaded! Please check your downloads folder.');
-    }, 100);
+    render.remove();
+    downloadForm.hidden = true;
+    successMessage.hidden = false;
   });
 }
 
