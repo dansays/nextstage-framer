@@ -114,7 +114,6 @@ function downloadImage() {
     render.remove();
 
     alert('Your badge has downloaded! Please check your downloads folder.');
-    window.top?.location.reload();
   });
 }
 
