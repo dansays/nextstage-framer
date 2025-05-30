@@ -22,6 +22,9 @@
     aspect-ratio: 1080 / 1350;
     position: relative;
     overflow: hidden;
+  }
+
+  main.ns-adjust {
     touch-action: none;
   }
 
@@ -35,7 +38,6 @@
 
   .ns-image {
     cursor: grab;
-    touch-action: none;
   }
 
   .ns-image.is-dragging {

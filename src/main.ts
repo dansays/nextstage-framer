@@ -96,6 +96,7 @@ function setImage(event: Event) {
     placeholder.hidden = true;
     downloadForm.hidden = false;
     wrapper.classList.remove('ns-preview');
+    wrapper.classList.add('ns-adjust');
   };
 
   reader.readAsDataURL(file);
@@ -138,7 +139,7 @@ let dragging = false;
 
 function startDrag(e: MouseEvent | TouchEvent) {
   // Prevent default touch behavior to avoid scrolling
-  if ('touches' in e) {
+  if ('touches' in e && wrapper.classList.contains('ns-adjust')) {
     e.preventDefault();
   }
 
