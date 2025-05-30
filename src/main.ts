@@ -69,8 +69,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Wire up event listeners
   document.addEventListener('mouseup', endDrag);
+  document.addEventListener('touchend', endDrag);
   image.addEventListener('mousedown', startDrag);
+  image.addEventListener('touchstart', startDrag);
   document.addEventListener('mousemove', onDrag);
+  document.addEventListener('touchmove', onDrag);
   uploadButton.addEventListener('change', setImage);
   scaleSlider.addEventListener('input', scaleImage);
   downloadButton.addEventListener('click', downloadImage);
@@ -133,10 +136,18 @@ let offsetX = 0;
 let offsetY = 0;
 let dragging = false;
 
-function startDrag(e: MouseEvent) {
+function startDrag(e: MouseEvent | TouchEvent) {
+  // Prevent default touch behavior to avoid scrolling
+  if ('touches' in e) {
+    e.preventDefault();
+  }
+
   dragging = true;
-  startX = e.clientX;
-  startY = e.clientY;
+  const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+  const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+  startX = clientX;
+  startY = clientY;
   const rect = image.getBoundingClientRect();
   const containerRect = wrapper.getBoundingClientRect();
   offsetX = rect.left - containerRect.left;
@@ -144,10 +155,14 @@ function startDrag(e: MouseEvent) {
   image.classList.add('is-dragging');
 }
 
-function onDrag(e: MouseEvent) {
+function onDrag(e: MouseEvent | TouchEvent) {
   if (!dragging) return;
-  const dx = e.clientX - startX;
-  const dy = e.clientY - startY;
+
+  const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+  const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+  const dx = clientX - startX;
+  const dy = clientY - startY;
 
   const newLeft = clamp(
     offsetX + dx,
@@ -166,6 +181,11 @@ function onDrag(e: MouseEvent) {
   const multiplier = 1080 / wrapper.clientWidth;
   image.dataset.left = `${newLeft * multiplier}px`;
   image.dataset.top = `${newTop * multiplier}px`;
+
+  // Prevent default touch behavior to avoid scrolling
+  if ('touches' in e) {
+    e.preventDefault();
+  }
 }
 
 function endDrag() {
